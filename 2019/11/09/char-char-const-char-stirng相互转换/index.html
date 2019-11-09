@@ -24,7 +24,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>局域网设备快速共享文件 - Hexo</title>
+<title>char[] char* const char* string相互转换 - Hexo</title>
 
 <meta name="keywords" content="">
 
@@ -143,14 +143,25 @@
                 </p>
                 <p>一个搬🧱的劳斯基😁️️</p>
             </div>
-            <h2 class="post-title">局域网设备快速共享文件</h2>
+            <h2 class="post-title">char[] char* const char* string相互转换</h2>
             <div class="post-meta">
-                emm... 75 words in the article |
+                emm... 851 words in the article |
                 you are the&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>th friend who reading now
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p>需要共享文件的设备运行命令：<br><code>python -m SimpleHTTPServer 8080 (端口号自定义)</code><br>其他设备访问：<br><code>共享文件设备ip:8080</code></p>
+            <ol>
+<li><strong>string 转 const char*</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const char* constc = nullptr;</span><br><span class="line">constc = str.c_str();</span><br></pre></td></tr></table></figure></li>
+<li><strong>string 转 char*</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">char* c = nullptr;</span><br><span class="line">const char* constc = nullptr;</span><br><span class="line">constc = str.c_str();</span><br><span class="line">c = const_cast&lt;char*&gt;(constc);</span><br></pre></td></tr></table></figure></li>
+<li><strong>string 转 char[]</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string str = &quot;kuol&quot;;</span><br><span class="line">char arr[20] = &#123;0&#125;;</span><br><span class="line">for (int i = 0; i &lt; str.length(); i++)</span><br><span class="line">    arr[i] = str[i];</span><br></pre></td></tr></table></figure></li>
+<li><strong>const char* 转 string</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const char* constc = &quot;kuol&quot;;</span><br><span class="line">string str(constc);</span><br></pre></td></tr></table></figure></li>
+<li><strong>const char* 转 char*</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = const_cast&lt;char*&gt;(constc);</span><br></pre></td></tr></table></figure></li>
+<li><strong>const char* 转char[]</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const char* constc = &quot;kuol&quot;;</span><br><span class="line">char arrc[20] = &#123;0&#125;;</span><br><span class="line">strncpy_s(arrc, constc, 20);</span><br></pre></td></tr></table></figure></li>
+<li><strong>char* 转 string</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char* c = &quot;kuol&quot;;</span><br><span class="line">string str(c);</span><br></pre></td></tr></table></figure></li>
+<li><strong>char* 转 const char*</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">constc = c;</span><br></pre></td></tr></table></figure></li>
+<li><strong>char* 转 char[]</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char* c = &quot;kuol&quot;;</span><br><span class="line">char arrc[20] = &#123;0&#125;;</span><br><span class="line">strncpy_s(arrc, c, 20);</span><br></pre></td></tr></table></figure></li>
+<li><strong>char[] 转 string/const char<em>/char</em></strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str = arrc;</span><br><span class="line">constc = arrc;</span><br><span class="line">c = arrc;</span><br></pre></td></tr></table></figure></li>
+</ol>
 
             
                 
@@ -165,7 +176,7 @@
         
         <div class="post-tags">Tags：
             
-            <a href="/tags/%E6%97%A5%E5%B8%B8%E6%8A%80%E8%83%BD/">日常技能</a>
+            <a href="/tags/C-%E5%9F%BA%E7%A1%80/">C++基础</a>
             
         </div>
         
